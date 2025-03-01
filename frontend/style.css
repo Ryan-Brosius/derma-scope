@@ -2,7 +2,8 @@
     --primary-color: #5DA3A4;   /* Soft Teal */
     --secondary-color: #A8E6CF; /* Light Mint */
     --background-color: #F7F9F9; /* Off-white */
-    --text-color: #2C3E50; /* Charcoal Gray */
+    --text-color: #5a6570; /* Charcoal Gray */
+    --nav-bar: #435261; /* Charcoal Gray */
     --header-bg: #0A4C56; /* Deep Teal */
 }
 
@@ -30,6 +31,14 @@ body {
 .navbar-brand img {
     height: 50px;
     max-width: 150px;
+}
+
+.navbar-brand:hover {
+    color: var(--secondary-color);
+}
+
+.brand-text:hover {
+    color: var(--secondary-color);
 }
 
 .navbar-nav .nav-link {
@@ -98,7 +107,7 @@ legend {
 
 /* Navbar Styling */
 .navbar {
-    background-color: var(--text-color);
+    background-color: var(--nav-bar);
     padding: 15px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -141,7 +150,6 @@ legend {
 }
 
 .navbar-nav .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
     color: var(--secondary-color);
 }
 
