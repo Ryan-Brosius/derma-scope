@@ -1,5 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+from typing import Optional
+from PIL import Image
+import io
 
 app = FastAPI()
 
@@ -15,6 +18,21 @@ app.add_middleware(
 async def read_root():
     return {"message": "We are up!!"}
 
+@app.post("/diagnose")
+async def generate_information_report(
+    age: str = Form(...),
+    gender: str = Form(...),
+    history: str = Form(...),
+    symptoms: str = Form(...),
+    lesion_type: str = Form(...),
+    lesion_location: str = Form(...),
+    image: UploadFile = File(...),
+    max_tokens: int = Form(600)
+):
+    contents = await image.read()
+    image = Image.open(io.BytesIO(contents))
+
+    return {"message": "Report generated successfully"}
 
 if __name__ == "__main__":
     import uvicorn
