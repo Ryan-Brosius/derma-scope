@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagnosis Results</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+              <img src="images.jpeg" alt="DermaScope Logo" height="50">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="lesions.html">Lesions</a></li>
+                  <li class="nav-item"><a class="nav-link" href="llm.html">LLM</a></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+  <!-- Results Container -->
+  <div class="container mt-5 pt-5 text-center">
+      <h1>Diagnosis Results</h1>
+
+      <!-- Toggle Switch for Detailed vs Simplified Mode -->
+      <div class="form-check form-switch mt-4">
+          <input class="form-check-input" type="checkbox" id="diagnosisToggle">
+          <label class="form-check-label" for="diagnosisToggle">Patient Mode</label>
+      </div>
+
+      <div class="mt-4">
+          <h2>Diagnosis</h2>
+          <textarea id="diagnosisResult" class="form-control text-center" rows="5" readonly>Loading diagnosis...</textarea>
+      </div>
+
+      <div class="mt-4">
+          <h2>Treatment</h2>
+          <textarea id="treatmentResult" class="form-control text-center" rows="5" readonly>Loading treatment recommendations...</textarea>
+      </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+      // Example data (Replace this with real data from your API)
+      const detailedDiagnosis = "This is a detailed diagnosis meant for a doctor. It includes medical terminology, lesion classification, potential biopsy recommendations, and differential diagnoses.";
+      const simplifiedDiagnosis = "This is a simplified diagnosis meant for a patient. It explains the condition in simple terms and suggests next steps.";
+
+      // Toggle functionality
+      document.getElementById("diagnosisToggle").addEventListener("change", function() {
+          const diagnosisBox = document.getElementById("diagnosisResult");
+          if (this.checked) {
+              diagnosisBox.value = detailedDiagnosis;
+              this.nextElementSibling.innerText = "Doctor Mode";
+          } else {
+              diagnosisBox.value = simplifiedDiagnosis;
+              this.nextElementSibling.innerText = "Patient Mode";
+          }
+      });
+
+      // Set default diagnosis to simplified
+      document.getElementById("diagnosisResult").value = simplifiedDiagnosis;
+  </script>
+
+</body>
+</html>
