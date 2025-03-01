@@ -6,12 +6,21 @@
     --header-bg: #0A4C56; /* Deep Teal */
 }
 
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* HEADER styling below*/
 * {
     text-decoration: none;
 }
 
 .navbar {
-    background: crimson;
+    background: var(--header-bg);
     font-family: Calibri;
     padding-right: 15px;
     padding-left: 15px;
