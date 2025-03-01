@@ -1,26 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DermaScope</title>
-    <link rel="stylesheet" href="styles.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Navigation Bar</title>
+	<style type="text/css">
+		*{
+			text-decoration: none;
+		}
+		.navbar{
+			background: crimson; font-family: calibri; padding-right: 1px;padding-left: 1px;
+		}
+		.navdiv{
+			display: flex; align-items: center; justify-content: space-between;
+		}
+		.logo a{
+			font-size: 35px; font-weight: 600; color: white;
+		}
+		li{
+			list-style: none; display: inline-block;
+		}
+		li a{
+			color: white; font-size: 18px; font-weight: bold; margin-right: 25px;
+		}
+		button{
+			background-color: black; margin-left: 10px; border-radius: 10px; padding: 10px; width: 90px;
+		}
+		button a{
+			color: white; font-weight: bold; font-size: 15px;
+		}
+	</style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <!-- Logo aligned to the left -->
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="DermaScope Logo">
-            </a>
-
-            <!-- Navigation links aligned to the right -->
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="lesions.html">Lesions</a></li>
-                <li><a href="llm.html">LLM</a></li>
-            </ul>
-        </nav>
-    </header>
+	<nav class="navbar">
+		<div class="navdiv">
+			<div class="logo"><a href="index.html">Derma Scope</a> </div>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="lesions.html">Lesions</a></li>
+				<li><a href="llm.html">LLM</a></li>
+			</ul>
+		</div>
+	</nav>
 </body>
 </html>
