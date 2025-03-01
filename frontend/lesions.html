@@ -14,6 +14,8 @@
 </head>
 <body>
 
+  <div id="navbar-container"></div>
+
   <!-- Form Container (Added margin-top to prevent overlap with fixed navbar) -->
   <div class="container form-container mt-5 pt-5">
       <h1 class="text-center">Skin Lesion Diagnosis Form</h1>
@@ -72,24 +74,22 @@
       const formData = new FormData(this);
       const imageFile = formData.get("image");
       const lesionLocation = formData.get("lesionLocation");
-      const age = formData.get("age")
-      const gender = formData.get("gender")
-      const medicalHistory = formData.get("medicalHistory")
-      const symptoms = formData.get("symptoms")
+      const age = formData.get("age");
+      const gender = formData.get("gender");
+      const medicalHistory = formData.get("medicalHistory");
+      const symptoms = formData.get("symptoms");
 
-      sendDiagnosisData(imageFile, "", "", "", "", "")
+      sendDiagnosisData(imageFile, age, gender, medicalHistory, symptoms, lesionLocation);
     });
-  </script>
 
-    <div id="navbar-container"></div>
-    <script>
-        async function loadNavbar() {
-            const response = await fetch("navbar.html");
-            const navbarHTML = await response.text();
-            document.getElementById("navbar-container").innerHTML = navbarHTML;
-        }
-        loadNavbar();
-    </script>
+    // Load the navbar from an external file (navbar.html)
+    async function loadNavbar() {
+        const response = await fetch("navbar.html");
+        const navbarHTML = await response.text();
+        document.getElementById("navbar-container").innerHTML = navbarHTML;
+    }
+    loadNavbar();
+  </script>
 
 </body>
 </html>
