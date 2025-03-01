@@ -1,11 +1,21 @@
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# Serve static frontend files
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/api/hello")
+@app.get("/health")
 async def read_root():
-    return {"message": "Hello from FastAPI!"}
+    return {"message": "We are up!!"}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000) 
