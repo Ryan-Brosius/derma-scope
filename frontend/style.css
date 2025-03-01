@@ -1,71 +1,48 @@
-/* Define global color variables */
-:root {
-    --primary-color: #ffcc99;  /* Warm peach */
-    --secondary-color: #f4e1d2; /* Soft beige */
-    --background-color: #fff8f2; /* Off-white */
-    --text-color: #333333; /* Dark gray */
-    --header-bg: #ffb366; /* Light orange */
-}
-
-/* Apply global styles */
-body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: Arial, sans-serif;
-    margin: 0; /* Remove default margins */
-    padding: 0;
-}
-
-/* Header styling */
-header {
-    background-color: var(--header-bg);
-    padding: 10px 20px;
-}
-
-/* Navbar styling - ensures proper alignment */
-.navbar {
-    display: flex;
-    align-items: center; /* Vertically centers elements */
-    justify-content: space-between; /* Push logo left, links right */
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-/* Logo styling */
-.logo img {
-    height: 50px;
-    max-width: 150px;
-    display: block;
-}
-
-/* Navigation links - remove list styling */
-.nav-links {
-    list-style: none;
-    display: flex; /* Align items horizontally */
-    gap: 20px; /* Space between buttons */
-    margin: 0;
-    padding: 0;
-}
-
-/* Ensure nav items are inline */
-.nav-links li {
-    display: inline-block;
-}
-
-/* Style the navigation buttons */
-.nav-links a {
+* {
     text-decoration: none;
-    color: var(--text-color);
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background 0.3s ease;
+}
+
+.navbar {
+    background: crimson;
+    font-family: Calibri;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.navdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo a {
+    font-size: 35px;
+    font-weight: 600;
+    color: white;
+}
+
+li {
+    list-style: none;
     display: inline-block;
 }
 
-/* Hover effect for buttons */
-.nav-links a:hover {
-    background: var(--primary-color);
+li a {
     color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 25px;
+}
+
+button {
+    background-color: black;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 90px;
+}
+
+button a {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
 }
