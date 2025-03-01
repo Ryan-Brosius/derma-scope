@@ -1,95 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skin Lesion Diagnosis Form</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skin Lesion Diagnosis Form</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="style.css">
-  <script src="api_caller.js"></script>
-</head>
-<body>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css" />
+    <script src="api_caller.js"></script>
+  </head>
+  <body>
+    <!-- Loading Screen (Initially hidden) -->
+    <div id="loadingScreen" class="loading-screen">
+      <div class="spinner"></div>
+      <p id="loadingText"></p>
+      <!-- Added id="loadingText" -->
+    </div>
 
-  <div id="navbar-container"></div>
+    <div id="navbar-container"></div>
 
-  <!-- Form Container (Added margin-top to prevent overlap with fixed navbar) -->
-  <div class="container form-container mt-5 pt-5">
+    <!-- Form Container (Added margin-top to prevent overlap with fixed navbar) -->
+    <div class="container form-container mt-5 pt-5">
       <h1 class="text-center">Skin Lesion Diagnosis Form</h1>
       <form id="diagnosisForm">
-          <!-- Lesion Details -->
-          <fieldset>
-              <legend>Lesion Details</legend>
-              <div class="mb-3">
-                  <label for="imageUpload" class="form-label">Upload Image of Skin Lesion</label>
-                  <input type="file" id="imageUpload" name="image" accept="image/*" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                  <label for="lesionLocation" class="form-label">Lesion Location on Body</label>
-                  <input type="text" id="lesionLocation" name="lesionLocation" class="form-control" placeholder="E.g., Left arm, Back, etc.">
-              </div>
-          </fieldset>
+        <!-- Lesion Details -->
+        <fieldset>
+          <legend>Lesion Details</legend>
+          <div class="mb-3">
+            <label for="imageUpload" class="form-label"
+              >Upload Image of Skin Lesion</label
+            >
+            <input
+              type="file"
+              id="imageUpload"
+              name="image"
+              accept="image/*"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="lesionLocation" class="form-label"
+              >Lesion Location on Body</label
+            >
+            <input
+              type="text"
+              id="lesionLocation"
+              name="lesionLocation"
+              class="form-control"
+              placeholder="E.g., Left arm, Back, etc."
+            />
+          </div>
+        </fieldset>
 
-          <!-- Patient Information -->
-          <fieldset>
-              <legend>Patient Information</legend>
-              <div class="mb-3">
-                  <label for="age" class="form-label">Age</label>
-                  <input type="number" id="age" name="age" class="form-control" min="0">
-              </div>
-              <div class="mb-3">
-                  <label for="gender" class="form-label">Gender</label>
-                  <select id="gender" name="gender" class="form-select">
-                      <option value="">Select</option>
-                      <option value="female">Female</option>
-                      <option value="male">Male</option>
-                      <option value="other">Other</option>
-                  </select>
-              </div>
-              <div class="mb-3">
-                  <label for="medicalHistory" class="form-label">Medical History</label>
-                  <textarea id="medicalHistory" name="medicalHistory" class="form-control" rows="3" placeholder="Enter relevant medical history"></textarea>
-              </div>
-              <div class="mb-3">
-                  <label for="symptoms" class="form-label">Symptoms</label>
-                  <textarea id="symptoms" name="symptoms" class="form-control" rows="3" placeholder="Describe your symptoms"></textarea>
-              </div>
-          </fieldset>
+        <!-- Patient Information -->
+        <fieldset>
+          <legend>Patient Information</legend>
+          <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              class="form-control"
+              min="0"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <select id="gender" name="gender" class="form-select">
+              <option value="">Select</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="medicalHistory" class="form-label"
+              >Medical History</label
+            >
+            <textarea
+              id="medicalHistory"
+              name="medicalHistory"
+              class="form-control"
+              rows="3"
+              placeholder="Enter relevant medical history"
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="symptoms" class="form-label">Symptoms</label>
+            <textarea
+              id="symptoms"
+              name="symptoms"
+              class="form-control"
+              rows="3"
+              placeholder="Describe your symptoms"
+            ></textarea>
+          </div>
+        </fieldset>
 
-          <!-- Submit Button -->
-          <button type="submit" class="btn btn-primary w-100">Submit</button>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
       </form>
-  </div>
+    </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    document.getElementById("diagnosisForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+    <script>
+      document
+        .getElementById("diagnosisForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          document.getElementById("loadingScreen").style.display = "flex";
 
-      const formData = new FormData(this);
-      const imageFile = formData.get("image");
-      const lesionLocation = formData.get("lesionLocation");
-      const age = formData.get("age");
-      const gender = formData.get("gender");
-      const medicalHistory = formData.get("medicalHistory");
-      const symptoms = formData.get("symptoms");
+          startLoadingTextLoop();
 
-      sendDiagnosisData(imageFile, age, gender, medicalHistory, symptoms, lesionLocation);
-    });
+          const formData = new FormData(this);
+          const imageFile = formData.get("image");
+          const lesionLocation = formData.get("lesionLocation");
+          const age = formData.get("age");
+          const gender = formData.get("gender");
+          const medicalHistory = formData.get("medicalHistory");
+          const symptoms = formData.get("symptoms");
 
-    // Load the navbar from an external file (navbar.html)
-    async function loadNavbar() {
+          sendDiagnosisData(
+            imageFile,
+            age,
+            gender,
+            medicalHistory,
+            symptoms,
+            lesionLocation
+          );
+        });
+
+      let loadingTextIndex = 0;
+      let loadingTextInterval;
+
+      function startLoadingTextLoop() {
+        const loadingMessages = [
+          "Classifying image...",
+          "Identifying lesion type...",
+          "Generating diagnosis...",
+          "Creating report...",
+          "Generating treatment...",
+        ];
+
+        // Change the loading text every second
+        loadingTextInterval = setInterval(() => {
+          document.getElementById("loadingText").textContent =
+            loadingMessages[loadingTextIndex];
+          loadingTextIndex = (loadingTextIndex + 1) % loadingMessages.length; // Loop back to the start
+        }, 5000); // Update every 1 second
+      }
+
+      // Load the navbar from an external file (navbar.html)
+      async function loadNavbar() {
         const response = await fetch("navbar.html");
         const navbarHTML = await response.text();
         document.getElementById("navbar-container").innerHTML = navbarHTML;
-    }
-    loadNavbar();
-  </script>
-
-</body>
+      }
+      loadNavbar();
+    </script>
+  </body>
 </html>
