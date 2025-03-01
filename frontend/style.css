@@ -22,13 +22,19 @@ h1 {
     color: var(--primary-color);
 }
 
-/* Navigation Bar Styling */
+/* Make the header a full-width bar */
+header {
+    background-color: var(--header-bg);
+    padding: 10px 20px;
+}
+
+/* Navigation bar: Flexbox for alignment */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--header-bg);
-    padding: 10px 20px;
+    max-width: 1200px; /* Adjust to fit your layout */
+    margin: 0 auto; /* Centers the nav bar */
 }
 
 /* Logo Styling */
@@ -36,7 +42,7 @@ h1 {
     height: 50px; /* Adjust as needed */
 }
 
-/* Navigation Links */
+/* Navigation links: Make them right-aligned */
 .nav-links {
     list-style: none;
     display: flex;
@@ -45,6 +51,7 @@ h1 {
     padding: 0;
 }
 
+/* Style each button */
 .nav-links li {
     display: inline;
 }
@@ -62,11 +69,4 @@ h1 {
 .nav-links a:hover {
     background: var(--primary-color);
     color: white;
-}
-
-/* Home Button */
-.home-btn {
-    background-color: var(--secondary-color);
-    padding: 10px 15px;
-    border-radius: 5px;
 }
