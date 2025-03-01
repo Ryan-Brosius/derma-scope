@@ -37,7 +37,7 @@ async def generate_information_report(
 
     image_prediction = classify_image(image)
 
-    return ReportGenerator.generate_report(age, gender, history, symptoms, image_prediction, lesion_location, max_tokens=10)
+    return ReportGenerator.generate_report(age, gender, history, symptoms, image_prediction, lesion_location)
 
 if __name__ == "__main__":
     import uvicorn
