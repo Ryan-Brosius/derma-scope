@@ -1,0 +1,23 @@
+:root {
+    --primary-color: #ffcc99;  /* Warm peach */
+    --secondary-color: #f4e1d2; /* Soft beige */
+    --background-color: #fff8f2; /* Off-white */
+    --text-color: #333333; /* Dark gray */
+    --header-bg: #ffb366; /* Light orange */
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: var(--primary-color);
+}
