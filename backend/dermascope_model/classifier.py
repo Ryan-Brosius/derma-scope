@@ -1,7 +1,8 @@
 import torch
 from torchvision.models import resnet18
 from PIL import Image
-from utils import data_transform_input as data_transform
+from dermascope_model.utils import data_transform_input as data_transform
+import os
 
 class_labels = {0: 'actinic keratoses and intraepithelial carcinoma',
                 1: 'basal cell carcinoma',
@@ -13,13 +14,12 @@ class_labels = {0: 'actinic keratoses and intraepithelial carcinoma',
 
 n_classes = 7 
 
-def classify_image(image_path):
-    image = Image.open(image_path)
+def classify_image(image: Image.Image):
     image = data_transform(image)
     image = image.unsqueeze(0)
 
     model = resnet18(num_classes=n_classes).to('cpu')
-    checkpoint_path = r'Models\resnet18_dermamnist_epoch49_Best_New.pt'
+    checkpoint_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"Models", f"resnet18_dermamnist_epoch49_Best_New.pt")
     model.load_state_dict(torch.load(checkpoint_path, map_location=torch.device('cpu')))
     model.eval()
 
