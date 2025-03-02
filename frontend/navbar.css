@@ -118,3 +118,7 @@
 .bootstrap-navbar .navbar-toggler {
     border: none;
 }
+
+body {
+  background-color: var(--background-color);  
+}

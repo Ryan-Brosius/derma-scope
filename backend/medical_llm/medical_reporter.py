@@ -116,8 +116,9 @@ class MedicalReportGenerator:
             f"Diagnosis Explanation: {reports[1]}"
             f'\n\n'
             f'Task:\n'
-            f"Develop a comprehensive treatment plan and provide recommendations for further care. "
-            f"Outline clear steps and suggestions for follow-up based on the diagnosis and patient details. "
+            f"Develop a concise treatment plan and provide recommendations for diagnosis that will be presented to the patient. "
+            f"Make it simple and easy to understand for the patient. "
+            f"Outline clear steps and suggestions about the best treatments. "
             f"Ensure the explanation is in plain text without any fancy formatting.\n"
         )
 

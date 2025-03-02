@@ -1,0 +1,230 @@
+/* Root Variables (Updated Colors) */
+:root {
+    --primary-color: #5da3a4; /* Soft Teal */
+    --secondary-color: #a8e6cf; /* Light Mint */
+    --background-color: #f7f9f9; /* Off-white */
+    --text-color: #5a6570; /* Charcoal Gray */
+    --nav-bar: #435261; /* Charcoal Gray */
+    --header-bg: #0a4c56; /* Deep Teal */
+  }
+  
+  /* Reset and Base Styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--background-color);
+  }
+  
+  .container {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  /* Header styles */
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  h1 {
+    color: var(--header-bg);
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  header p {
+    color: var(--text-color);
+  }
+  
+  /* Tab styles */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .tab-button {
+    background-color: var(--background-color);
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .tab-button:first-child {
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+  }
+  
+  .tab-button:last-child {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+  }
+  
+  .tab-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Card styles */
+  .card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+  }
+  
+  .card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .doctor-header {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .patient-header {
+    background-color: var(--secondary-color);
+    color: var(--header-bg);
+  }
+  
+  .card-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  /* Form styles */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    min-height: 7.5rem;
+    background-color: white;
+    resize: none;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(93, 163, 164, 0.5);
+  }
+  
+  /* Form Actions */
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary {
+    background-color: var(--header-bg);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--nav-bar);
+  }
+  
+  /* Patient view styles */
+  .info-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-section h3 {
+    color: var(--header-bg);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-text {
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 0.375rem;
+    padding: 1rem;
+  }
+  
+  .info-text p {
+    color: var(--text-color);
+    font-style: italic;
+  }
+  
+  /* Important Note */
+  .important-note {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 0.375rem;
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .important-note h4 {
+    color: var(--header-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .important-note p {
+    color: var(--nav-bar);
+    font-size: 0.875rem;
+  }
+  
+  /* Tab content visibility */
+  .tab-content {
+    display: none;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
