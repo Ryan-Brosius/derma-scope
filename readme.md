@@ -1,7 +1,9 @@
 ![DermaScope Logo](frontend/images/logo.png)
 
 ## Overview
-DermaScope is a machine learning-powered application designed to assist in skin condition analysis using a CNN model.
+Millions around the world lack access to dermatologists, leading to late diagnoses of serious skin conditions. Our AI-powered skin lesion detection app bridges this gap by providing instant, affordable, and accessible skin analysis. Simply upload a picture, and our technology predicts potential concerns—empowering early detection, especially in underserved communities. With this tool, we’re bringing life-saving dermatological insights to those who need them most.
+
+Our model is trained on the HAM10000 dataset, which comprises data on seven different types of skin lesions, curated by medical professionals. We fine-tuned a PyTorch implementation of ResNet18 over 50 epochs, incorporating noise filtering during each training pass to overcome the challenges posed by the small dataset. These efforts have enabled us to achieve an accuracy rate of approximately 90% on our test evaluation.
 
 ## Setup Instructions
 
@@ -51,6 +53,3 @@ Below are visual representations of our model pipeline and training progress:
 
 ### Training Loss
 ![Training Loss](frontend/images/training_loss.png)
-
-## Logo
-Our project logo:
