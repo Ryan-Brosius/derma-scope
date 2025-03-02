@@ -1,83 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Durma Scope</title>
-    
-    <!-- Bootstrap CSS (CDN) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermaScope - AI-Powered Skin Diagnosis Tool</title>
     <style>
-        .btn-group .btn {
-            margin: 5px;
+        :root {
+            --primary-color: #5da3a4; /* Soft Teal */
+            --secondary-color: #a8e6cf; /* Light Mint */
+            --background-color: #f7f9f9; /* Off-white */
+            --text-color: #5a6570; /* Charcoal Gray */
+            --nav-bar: #435261; /* Charcoal Gray */
+            --header-bg: #0a4c56; /* Deep Teal */
         }
-        .btn.active {
-            background-color: #007bff !important;
-            color: white !important;
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--nav-bar);
+            color: #fff;
+            padding: 1rem 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Logo Section */
+        .logo-section {
+            text-align: center;
+          
+        }
+
+        .logo-section img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 2rem 0;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--header-bg);
+        }
+
+        /* Skin Diseases Section */
+        .skin-diseases {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .disease-description {
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+            display: none;
+            color: white;
+        }
+
+        .disease-description.active {
+            display: block;
+        }
+
+        /* ML Model and Graphs Section */
+        .ml-section {
+            margin-top: 3rem;
+        }
+
+        .ml-item {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .ml-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .ml-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--nav-bar);
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .skin-diseases {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="navbar-container"></div>
-    
-    <div class="container text-center mt-5">
-        <!-- Logo -->
-        <img src="images/logo.png" alt="Durma Scope Logo" class="img-fluid" style="max-width: 200px;">
-        
-        <!-- About Us Section -->
-        <div class="mt-4">
-            <p class="fs-5">Millions around the world lack access to dermatologists, leading to late diagnoses of serious skin conditions. Our AI-powered skin lesion detection app bridges this gap by providing instant, affordable, and accessible skin analysis. Simply upload a picture, and our technology predicts potential concerns—empowering early detection, especially in underserved communities. With this tool, we’re bringing life-saving dermatological insights to those who need them most.</p>
-        </div>
-        
-        <!-- Lesion Classifications Heading -->
-        <h2 class="mt-5">Lesion Classifications</h2>
-        
-        <!-- Buttons for Lesion Types -->
-        <div class="d-flex flex-wrap justify-content-center mt-3">
-            <button class="btn btn-outline-primary" onclick="showDescription(0, this)">Actinic Keratoses and Intraepithelial Carcinoma</button>
-            <button class="btn btn-outline-primary" onclick="showDescription(1, this)">Basal Cell Carcinoma</button>
-            <button class="btn btn-outline-primary" onclick="showDescription(2, this)">Benign Keratosis-like Lesions</button>
-            <button class="btn btn-outline-primary" onclick="showDescription(3, this)">Dermatofibroma</button>
-        </div>
-        <div class="d-flex flex-wrap justify-content-center mt-2">
-            <button class="btn btn-outline-primary" onclick="showDescription(4, this)">Melanoma</button>
-            <button class="btn btn-outline-primary" onclick="showDescription(5, this)">Melanocytic Nevi</button>
-            <button class="btn btn-outline-primary" onclick="showDescription(6, this)">Vascular Lesions</button>
-        </div>
-        
-        <!-- Lesion Description Display -->
-        <div id="lesion-description" class="mt-4 fs-5"></div>
+    <div id="navbar-container">
+        <iframe src="navbar.html" frameborder="0" width="100%" scrolling="no"></iframe>
     </div>
-    
+
+    <div class="logo-section">
+        <img src="images/logo.png" alt="DermaScope Logo">
+    </div>
+
+    <main class="container">
+        <section>
+            <h2>Skin Lesions We Detect</h2>
+            <div class="skin-diseases">
+                <button class="btn" onclick="showDescription('actinic')">Actinic Keratoses</button>
+                <button class="btn" onclick="showDescription('basal')">Basal Cell Carcinoma</button>
+                <button class="btn" onclick="showDescription('benign')">Benign Keratosis</button>
+                <button class="btn" onclick="showDescription('dermatofibroma')">Dermatofibroma</button>
+                <button class="btn" onclick="showDescription('melanoma')">Melanoma</button>
+                <button class="btn" onclick="showDescription('nevi')">Melanocytic Nevi</button>
+                <button class="btn" onclick="showDescription('vascular')">Vascular Lesions</button>
+            </div>
+            <div id="disease-description" class="disease-description"></div>
+        </section>
+
+        <section class="ml-section">
+            <h2>Our Machine Learning Model</h2>
+            <div class="ml-item">
+                <h3>Training Model Architecture</h3>
+                <img src="images/ResNet18_Model.webp" alt="ML Model Architecture">
+                <p>Neural network architecture designed for accurate skin lesion classification</p>
+            </div>
+            <div class="ml-item">
+                <h3>LLM Feedback Pipeline</h3>
+                <img src="images/Report_Pipeline.webp" alt="Model Accuracy Graph">
+                <p>CoT reasoning to give best diagnostic accuracy</p>
+            </div>
+            <div class="ml-item">
+                <h3>Training Accuracy</h3>
+                <img src="images/test_accuracy.png" alt="Confusion Matrix">
+                <p>Training accuracy reaches around 90% on test dataset</p>
+            </div>
+            <div class="ml-item">
+                <h3>Training Loss</h3>
+                <img src="images/training_loss.png" alt="ROC Curve">
+                <p>Training loss over time as model approaches 50 epochs</p>
+            </div>
+        </section>
+    </main>
+
     <script>
-        const lesionDescriptions = {
-            0: "Actinic keratoses and intraepithelial carcinoma are precancerous skin lesions caused by sun damage. They may develop into squamous cell carcinoma if untreated.",
-            1: "Basal cell carcinoma is the most common type of skin cancer, often appearing as a pearly or waxy bump on sun-exposed areas.",
-            2: "Benign keratosis-like lesions include seborrheic keratoses, solar lentigines, and lichen planus-like keratoses, all of which are non-cancerous growths.",
-            3: "Dermatofibroma is a benign skin nodule that is firm and often appears on the lower legs, commonly in women.",
-            4: "Melanoma is a serious and aggressive form of skin cancer that develops from melanocytes, requiring early detection for the best prognosis.",
-            5: "Melanocytic nevi, or moles, are common pigmented skin lesions that can be congenital or acquired throughout life.",
-            6: "Vascular lesions include hemangiomas and pyogenic granulomas, which are abnormal blood vessel growths that may be red or purple in color."
-        };
-        
-        function showDescription(index, button) {
-            document.getElementById("lesion-description").innerText = lesionDescriptions[index];
-            document.querySelectorAll(".btn-outline-primary").forEach(btn => btn.classList.remove("active"));
-            button.classList.add("active");
+        function showDescription(disease) {
+            const descriptions = {
+                actinic: "Rough, scaly patches caused by years of sun exposure. These are precancerous growths that may develop into skin cancer if left untreated.",
+                basal: "The most common type of skin cancer. It appears as a pearly or waxy bump, or a flat, flesh-colored or brown scar-like lesion.",
+                benign: "Non-cancerous skin growths that appear as waxy, stuck-on-looking bumps. They're harmless but can resemble skin cancer.",
+                dermatofibroma: "Small, firm bumps that usually appear on the legs. They're benign growths that often develop after minor trauma to the skin.",
+                melanoma: "The most serious type of skin cancer. It develops in the cells that produce melanin and can appear as a new spot or a change in an existing mole.",
+                nevi: "Common moles that appear as small, brown spots caused by clusters of pigmented cells. Most are harmless, but some can develop into melanoma.",
+                vascular: "Abnormalities of blood vessels that appear as red or purple marks on the skin. These include hemangiomas, port-wine stains, and cherry angiomas."
+            };
+
+            const descriptionElement = document.getElementById('disease-description');
+            descriptionElement.textContent = descriptions[disease];
+            descriptionElement.classList.add('active');
         }
-    </script>
-    
-    <script>
-        async function loadNavbar() {
-            const response = await fetch("navbar.html");
-            const navbarHTML = await response.text();
-            document.getElementById("navbar-container").innerHTML = navbarHTML;
-        }
-        loadNavbar();
     </script>
 </body>
 </html>
