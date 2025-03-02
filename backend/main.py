@@ -48,7 +48,7 @@ async def classify_endpoint(
     ReportGenerator = MedicalReportGenerator()
 
     class_labels = {
-        "actinic keratosis": "A rough, scaly patch on the skin caused by years of sun exposure, potentially precancerous.",
+        "actinic keratoses and intraepithelial carcinoma": "A rough, scaly patch on the skin caused by years of sun exposure, potentially precancerous.",
         "basal cell carcinoma": "The most common type of skin cancer, appearing as a pearly or waxy bump, often on sun-exposed areas.",
         "benign keratosis-like lesions": "Non-cancerous skin growths such as seborrheic keratoses and solar lentigines.",
         "dermatofibroma": "A benign, firm skin nodule, commonly appearing on the lower legs, often due to minor injury.",
