@@ -11,17 +11,32 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css">
   <style>
-      .mode-label {
-          font-size: 1.2rem;
-          font-weight: bold;
-          padding: 5px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-      }
-      .active-mode {
-          background-color: #007bff;
-          color: white;
-      }
+    /* Mode Switch Label Styles */
+    .mode-label {
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 5px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .active-mode {
+        background-color: #007bff;
+        color: white;
+    }
+
+    /* Diagnosis Box Styles */
+    .diagnosis-box {
+        background-color: #f8f9fa;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+        padding: 10px;
+        text-align: left;
+        white-space: pre-wrap; /* Preserve formatting and wrap text */
+        overflow: hidden; /* Remove scrollbars */
+        min-height: 100px; /* Adjust as needed */
+        font-size: 1rem;
+        color: var(--text-color);
+    }
   </style>
 </head>
 <body>
@@ -29,44 +44,53 @@
   <div id="navbar-container"></div>
 
   <!-- Results Container -->
-  <div class="container mt-5 pt-5 text-center">
-      <h1>Diagnosis Results</h1>
+  <div class="container mt-5 pt-5">
+      <h1 class="text-center">Diagnosis Results</h1>
 
       <!-- Clickable Mode Switch -->
       <div class="mt-4 d-flex justify-content-center align-items-center">
           <span id="doctorLabel" class="mode-label active-mode" onclick="switchMode('doctor')">Doctor Mode</span>
-          <span class="mx-2">|</span>
           <span id="patientLabel" class="mode-label" onclick="switchMode('patient')">Patient Mode</span>
       </div>
 
       <!-- Doctor Mode Sections -->
-      <div id="doctorSections">
+      <div id="doctorSections" class="mt-4">
           <div class="mt-4">
-              <h2>Diagnosis</h2>
-              <textarea id="doctorDiagnosis" class="form-control text-center" rows="5" readonly>Loading diagnosis...</textarea>
+              <h2 class="text-center">Diagnosis</h2>
+              <div id="doctorDiagnosis" class="form-control diagnosis-box" readonly>
+                  Loading diagnosis...
+              </div>
           </div>
 
           <div class="mt-4">
-              <h2>Diagnosis Reason</h2>
-              <textarea id="diagnosisReason" class="form-control text-center" rows="5" readonly>Loading reasoning...</textarea>
+              <h2 class="text-center">Diagnosis Reason</h2>
+              <div id="diagnosisReason" class="form-control diagnosis-box" readonly>
+                  Loading reasoning...
+              </div>
           </div>
 
           <div class="mt-4">
-              <h2>Patient Report</h2>
-              <textarea id="patientReport" class="form-control text-center" rows="5" readonly>Generating patient report...</textarea>
+              <h2 class="text-center">Patient Report</h2>
+              <div id="patientReport" class="form-control diagnosis-box" readonly>
+                  Generating patient report...
+              </div>
           </div>
       </div>
 
       <!-- Patient Mode Sections -->
-      <div id="patientSections" style="display: none;">
+      <div id="patientSections" class="mt-4" style="display: none;">
           <div class="mt-4">
-              <h2>Diagnosis</h2>
-              <textarea id="patientDiagnosis" class="form-control text-center" rows="5" readonly>Loading diagnosis...</textarea>
+              <h2 class="text-center">Diagnosis</h2>
+              <div id="patientDiagnosis" class="form-control diagnosis-box" readonly>
+                  Loading diagnosis...
+              </div>
           </div>
 
           <div class="mt-4">
-              <h2>Treatment Plan</h2>
-              <textarea id="treatmentPlan" class="form-control text-center" rows="5" readonly>Loading treatment plan...</textarea>
+              <h2 class="text-center">Treatment Plan</h2>
+              <div id="treatmentPlan" class="form-control diagnosis-box" readonly>
+                  Loading treatment plan...
+              </div>
           </div>
       </div>
   </div>
@@ -97,11 +121,11 @@
               doctorLabel.classList.add("active-mode");
               patientLabel.classList.remove("active-mode");
 
-              // Update content using your stored diagnosis data (if available)
+              // Update content using stored diagnosis data (if available)
               const diagnosisData = JSON.parse(localStorage.getItem("diagnosisData"));
-              document.getElementById("doctorDiagnosis").value = diagnosisData ? diagnosisData[0] : doctorDiagnosis;
-              document.getElementById("diagnosisReason").value = diagnosisData ? diagnosisData[1] : diagnosisReason;
-              document.getElementById("patientReport").value = diagnosisData ? diagnosisData[2] : patientReport;
+              document.getElementById("doctorDiagnosis").textContent = diagnosisData ? diagnosisData[0] : doctorDiagnosis;
+              document.getElementById("diagnosisReason").textContent = diagnosisData ? diagnosisData[1] : diagnosisReason;
+              document.getElementById("patientReport").textContent = diagnosisData ? diagnosisData[2] : patientReport;
           } else {
               doctorSections.style.display = "none";
               patientSections.style.display = "block";
@@ -109,10 +133,10 @@
               patientLabel.classList.add("active-mode");
               doctorLabel.classList.remove("active-mode");
 
-              // Update content using your stored diagnosis data (if available)
+              // Update content using stored diagnosis data (if available)
               const diagnosisData = JSON.parse(localStorage.getItem("diagnosisData"));
-              document.getElementById("patientDiagnosis").value = diagnosisData ? diagnosisData[3] : patientDiagnosis;
-              document.getElementById("treatmentPlan").value = diagnosisData ? diagnosisData[4] : treatmentPlan;
+              document.getElementById("patientDiagnosis").textContent = diagnosisData ? diagnosisData[3] : patientDiagnosis;
+              document.getElementById("treatmentPlan").textContent = diagnosisData ? diagnosisData[4] : treatmentPlan;
           }
       }
 

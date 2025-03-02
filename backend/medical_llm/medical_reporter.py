@@ -13,7 +13,7 @@ class MedicalReportGenerator:
             api_key=API_KEY,
         )
 
-    def generate_report(self, age, gender, history, symptoms, lesion_type, lesion_location, max_tokens=600):    
+    def generate_report(self, age, gender, history, symptoms, lesion_type, lesion_location, max_tokens=800):    
         reports = []
 
         context = (
@@ -29,7 +29,7 @@ class MedicalReportGenerator:
         task = (
             f'\n'
             f"Task:\n"
-            f"Based on the patient details provided, list the top likely diagnosis or diagnoses. "
+            f"Based on the patient details provided, give a primary diagnosis and a secondary diegnosis (if necessary). "
             f"Include a brief rationale for each possibility. "
             f"Only include the diagnosis(es) with short descriptions in plain text without any extra formatting.\n"
         )
