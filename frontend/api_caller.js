@@ -14,6 +14,22 @@ async function sendDiagnosisData(
   formData.append("symptoms", symptoms);
   formData.append("lesion_location", lesion_location);
 
+  const formData2 = new FormData();
+  formData2.append("image", image);
+
+  try {
+    const response = await fetch("http://localhost:8000/classify", {
+      method: "POST",
+      body: formData2,
+    });
+
+    const data = await response.json();
+    console.log(data)
+    localStorage.setItem("diagnosisModel", JSON.stringify(data));
+  } catch (error) {
+    console.error("Error:", error);
+  }
+
   try {
     const response = await fetch("http://localhost:8000/diagnose", {
       method: "POST",

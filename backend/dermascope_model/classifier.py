@@ -29,6 +29,23 @@ def classify_image(image: Image.Image):
 
     return class_labels[prediction]
 
+def classify_image_with_confidence(image: Image.Image):
+    image = data_transform(image)
+    image = image.unsqueeze(0)
+
+    model = resnet18(num_classes=n_classes).to('cpu')
+    checkpoint_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Models", "resnet18_dermamnist_epoch49_Best_New.pt")
+    model.load_state_dict(torch.load(checkpoint_path, map_location=torch.device('cpu')))
+    model.eval()
+
+    with torch.no_grad():
+        output = model(image)
+        probabilities = torch.nn.functional.softmax(output, dim=1)
+        prediction = torch.argmax(probabilities, dim=1).item()
+        confidence = probabilities[0, prediction].item()
+
+    return {"Prediction": class_labels[prediction], "Confidence": confidence}
+
 
 if __name__ == "__main__":
     ## Sanity Check for myself lol

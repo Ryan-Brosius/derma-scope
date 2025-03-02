@@ -18,6 +18,9 @@
         </header>
 
         <div class="tabs">
+            <button class="tab-button" data-tab="model">
+                Model View
+            </button>
             <button class="tab-button active" data-tab="doctor">
                 Doctor View
             </button>
@@ -25,6 +28,51 @@
                 Patient View
             </button>
         </div>
+
+        <div id="model-view" class="tab-content">
+            <div class="model-card">
+                <div class="card-header doctor-header">
+                    <h2>AI Model Diagnosis</h2>
+                </div>
+                <div class="card-content text-center">
+                    <h3>Model Classification</h3>
+                    <div class="classification-box">
+                        <span id="model-classification">Melanoma</span>
+                    </div>
+                    <br>
+        
+                    <h4>What This Classification Means</h4>
+                    <p id="classification-meaning">Melanoma is a type of skin cancer that can spread if not treated early.</p>
+                    <br>
+
+                    <h3>Confidence Score</h3>
+                    <div class="confidence-box">
+                        <span id="confidence-score">93%</span>
+                    </div>
+                    <br>
+        
+                    <!-- Toggle Reference Images Button -->
+                    <button class="btn reference-toggle" onclick="toggleReferences()">View Reference Images</button>
+        
+                    <!-- Reference Images Section -->
+                    <div id="reference-images" class="reference-images hidden">
+                        <h3>Reference Images</h3>
+                        <div class="image-grid">
+                            <img src="images/placeholder1.jpg" alt="Reference Image 1">
+                            <img src="images/placeholder2.jpg" alt="Reference Image 2">
+                            <img src="images/placeholder3.jpg" alt="Reference Image 3">
+                            <img src="images/placeholder4.jpg" alt="Reference Image 4">
+                            <img src="images/placeholder5.jpg" alt="Reference Image 5">
+                            <img src="images/placeholder6.jpg" alt="Reference Image 6">
+                            <img src="images/placeholder7.jpg" alt="Reference Image 7">
+                            <img src="images/placeholder8.jpg" alt="Reference Image 8">
+                            <img src="images/placeholder9.jpg" alt="Reference Image 9">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
         <div id="doctor-view" class="tab-content active">
             <div class="card">
@@ -128,6 +176,12 @@
         document.getElementById("prognosis").textContent = diagnosisData ? diagnosisData[1] : diagnosisReason;
         document.getElementById("medical-report").textContent = diagnosisData ? diagnosisData[2] : patientReport;
 
+        const diagnosisModel = JSON.parse(localStorage.getItem("diagnosisModel"));
+        console.log(diagnosisModel)
+        document.getElementById("model-classification").textContent = diagnosisModel ? diagnosisModel["Prediction"] : "Melanoma";
+        document.getElementById("classification-meaning").textContent = diagnosisModel ? diagnosisModel["Meaning"] : "Melanoma is a type of skin cancer that can spread if not treated early.";
+        document.getElementById("confidence-score").textContent = diagnosisModel ? (diagnosisModel["Confidence"] * 100).toFixed(2) + "%" : "93%";
+
 
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll("textarea").forEach((textarea) => {
@@ -144,6 +198,13 @@
     textarea.style.height = "auto"; // Reset height to recalculate
     textarea.style.height = textarea.scrollHeight + "px"; // Set new height based on content
 }
+    </script>
+
+    <script>
+        function toggleReferences() {
+            const referenceSection = document.getElementById("reference-images");
+            referenceSection.classList.toggle("hidden");
+        }
     </script>
 </body>
 </html>
