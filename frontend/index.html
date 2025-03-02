@@ -10,9 +10,66 @@
     
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .btn-group .btn {
+            margin: 5px;
+        }
+        .btn.active {
+            background-color: #007bff !important;
+            color: white !important;
+        }
+    </style>
 </head>
 <body>
     <div id="navbar-container"></div>
+    
+    <div class="container text-center mt-5">
+        <!-- Logo -->
+        <img src="images/logo.png" alt="Durma Scope Logo" class="img-fluid" style="max-width: 200px;">
+        
+        <!-- About Us Section -->
+        <div class="mt-4">
+            <p class="fs-5">Millions around the world lack access to dermatologists, leading to late diagnoses of serious skin conditions. Our AI-powered skin lesion detection app bridges this gap by providing instant, affordable, and accessible skin analysis. Simply upload a picture, and our technology predicts potential concerns—empowering early detection, especially in underserved communities. With this tool, we’re bringing life-saving dermatological insights to those who need them most.</p>
+        </div>
+        
+        <!-- Lesion Classifications Heading -->
+        <h2 class="mt-5">Lesion Classifications</h2>
+        
+        <!-- Buttons for Lesion Types -->
+        <div class="d-flex flex-wrap justify-content-center mt-3">
+            <button class="btn btn-outline-primary" onclick="showDescription(0, this)">Actinic Keratoses and Intraepithelial Carcinoma</button>
+            <button class="btn btn-outline-primary" onclick="showDescription(1, this)">Basal Cell Carcinoma</button>
+            <button class="btn btn-outline-primary" onclick="showDescription(2, this)">Benign Keratosis-like Lesions</button>
+            <button class="btn btn-outline-primary" onclick="showDescription(3, this)">Dermatofibroma</button>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center mt-2">
+            <button class="btn btn-outline-primary" onclick="showDescription(4, this)">Melanoma</button>
+            <button class="btn btn-outline-primary" onclick="showDescription(5, this)">Melanocytic Nevi</button>
+            <button class="btn btn-outline-primary" onclick="showDescription(6, this)">Vascular Lesions</button>
+        </div>
+        
+        <!-- Lesion Description Display -->
+        <div id="lesion-description" class="mt-4 fs-5"></div>
+    </div>
+    
+    <script>
+        const lesionDescriptions = {
+            0: "Actinic keratoses and intraepithelial carcinoma are precancerous skin lesions caused by sun damage. They may develop into squamous cell carcinoma if untreated.",
+            1: "Basal cell carcinoma is the most common type of skin cancer, often appearing as a pearly or waxy bump on sun-exposed areas.",
+            2: "Benign keratosis-like lesions include seborrheic keratoses, solar lentigines, and lichen planus-like keratoses, all of which are non-cancerous growths.",
+            3: "Dermatofibroma is a benign skin nodule that is firm and often appears on the lower legs, commonly in women.",
+            4: "Melanoma is a serious and aggressive form of skin cancer that develops from melanocytes, requiring early detection for the best prognosis.",
+            5: "Melanocytic nevi, or moles, are common pigmented skin lesions that can be congenital or acquired throughout life.",
+            6: "Vascular lesions include hemangiomas and pyogenic granulomas, which are abnormal blood vessel growths that may be red or purple in color."
+        };
+        
+        function showDescription(index, button) {
+            document.getElementById("lesion-description").innerText = lesionDescriptions[index];
+            document.querySelectorAll(".btn-outline-primary").forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+        }
+    </script>
     
     <script>
         async function loadNavbar() {
@@ -22,6 +79,5 @@
         }
         loadNavbar();
     </script>
-
 </body>
 </html>
