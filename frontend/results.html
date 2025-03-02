@@ -18,10 +18,10 @@
         </header>
 
         <div class="tabs">
-            <button class="tab-button" data-tab="model">
+            <button class="tab-button active" data-tab="model">
                 Model View
             </button>
-            <button class="tab-button active" data-tab="doctor">
+            <button class="tab-button" data-tab="doctor">
                 Doctor View
             </button>
             <button class="tab-button" data-tab="patient">
@@ -29,7 +29,7 @@
             </button>
         </div>
 
-        <div id="model-view" class="tab-content">
+        <div id="model-view" class="tab-content active">
             <div class="model-card">
                 <div class="card-header doctor-header">
                     <h2>AI Model Diagnosis</h2>
@@ -39,6 +39,7 @@
                     <div class="classification-box">
                         <span id="model-classification">Melanoma</span>
                     </div>
+                    <br>
                     <br>
         
                     <h4>What This Classification Means</h4>
@@ -74,7 +75,7 @@
         </div>
         
 
-        <div id="doctor-view" class="tab-content active">
+        <div id="doctor-view" class="tab-content">
             <div class="card">
                 <div class="card-header doctor-header">
                     <h2>
@@ -87,7 +88,7 @@
                         <textarea id="diagnosis" placeholder="Enter detailed diagnosis information"></textarea>
                     </div>
                     <div class="form-group info-section">
-                        <h3>Prognosis</h3>
+                        <h3>Diagnosis Reasoning</h3>
                         <textarea id="prognosis" placeholder="Enter prognosis details"></textarea>
                     </div>
                     <div class="form-group info-section">
