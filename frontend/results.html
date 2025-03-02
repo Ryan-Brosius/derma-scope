@@ -59,15 +59,15 @@
                     <div id="reference-images" class="reference-images hidden">
                         <h3>Reference Images</h3>
                         <div class="image-grid">
-                            <img src="images/placeholder1.jpg" alt="Reference Image 1">
-                            <img src="images/placeholder2.jpg" alt="Reference Image 2">
-                            <img src="images/placeholder3.jpg" alt="Reference Image 3">
-                            <img src="images/placeholder4.jpg" alt="Reference Image 4">
-                            <img src="images/placeholder5.jpg" alt="Reference Image 5">
-                            <img src="images/placeholder6.jpg" alt="Reference Image 6">
-                            <img src="images/placeholder7.jpg" alt="Reference Image 7">
-                            <img src="images/placeholder8.jpg" alt="Reference Image 8">
-                            <img src="images/placeholder9.jpg" alt="Reference Image 9">
+                            <img id="img1" src="images/placeholder1.jpg" alt="Reference Image 1">
+                            <img id="img2" src="images/placeholder2.jpg" alt="Reference Image 2">
+                            <img id="img3" src="images/placeholder3.jpg" alt="Reference Image 3">
+                            <img id="img4" src="images/placeholder4.jpg" alt="Reference Image 4">
+                            <img id="img5" src="images/placeholder5.jpg" alt="Reference Image 5">
+                            <img id="img6" src="images/placeholder6.jpg" alt="Reference Image 6">
+                            <img id="img7" src="images/placeholder7.jpg" alt="Reference Image 7">
+                            <img id="img8" src="images/placeholder8.jpg" alt="Reference Image 8">
+                            <img id="img9" src="images/placeholder9.jpg" alt="Reference Image 9">
                         </div>
                     </div>
                 </div>
@@ -189,6 +189,72 @@
                 autoResize(textarea); // Adjust on page load
             });
         });
+
+
+        // Mapping of class labels to corresponding image sources (You should update the image paths)
+        const imageSources = {
+            "actinic keratoses and intraepithelial carcinoma": [
+                "images/Lesions/akiec/ISIC_0027577.jpg", "images/Lesions/akiec/ISIC_0027650.jpg", "images/Lesions/akiec/ISIC_0027678.jpg",
+                "images/Lesions/akiec/ISIC_0027700.jpg", "images/Lesions/akiec/ISIC_0027708.jpg", "images/Lesions/akiec/ISIC_0027719.jpg",
+                "images/Lesions/akiec/ISIC_0027795.jpg", "images/Lesions/akiec/ISIC_0027896.jpg", "images/Lesions/akiec/ISIC_0027958.jpg"
+            ],
+
+            "basal cell carcinoma": [
+                "images/Lesions/bcc/ISIC_0027865.jpg", "images/Lesions/bcc/ISIC_0027976.jpg", "images/Lesions/bcc/ISIC_0027998.jpg",
+                "images/Lesions/bcc/ISIC_0028079.jpg", "images/Lesions/bcc/ISIC_0028085.jpg", "images/Lesions/bcc/ISIC_0028095.jpg",
+                "images/Lesions/bcc/ISIC_0028106.jpg", "images/Lesions/bcc/ISIC_0028155.jpg", "images/Lesions/bcc/ISIC_0028238.jpg"
+            ],
+
+            "benign keratosis-like lesions": [
+                "images/Lesions/bkl/ISIC_0026060.jpg", "images/Lesions/bkl/ISIC_0026085.jpg", "images/Lesions/bkl/ISIC_0026104.jpg",
+                "images/Lesions/bkl/ISIC_0026153.jpg", "images/Lesions/bkl/ISIC_0026623.jpg", "images/Lesions/bkl/ISIC_0026634.jpg",
+                "images/Lesions/bkl/ISIC_0026769.jpg", "images/Lesions/bkl/ISIC_0026775.jpg", "images/Lesions/bkl/ISIC_0026958.jpg"
+            ],
+
+            "dermatofibroma": [
+                "images/Lesions/df/ISIC_0026417.jpg", "images/Lesions/df/ISIC_0027141.jpg", "images/Lesions/df/ISIC_0027188.jpg",
+                "images/Lesions/df/ISIC_0027613.jpg", "images/Lesions/df/ISIC_0027626.jpg", "images/Lesions/df/ISIC_0027648.jpg",
+                "images/Lesions/df/ISIC_0027727.jpg", "images/Lesions/df/ISIC_0027745.jpg", "images/Lesions/df/ISIC_0027876.jpg"
+            ],
+
+            "melanoma": [
+                "images/Lesions/mel/ISIC_0024367.jpg", "images/Lesions/mel/ISIC_0024545.jpg", "images/Lesions/mel/ISIC_0024586.jpg",
+                "images/Lesions/mel/ISIC_0024729.jpg", "images/Lesions/mel/ISIC_0026281.jpg", "images/Lesions/mel/ISIC_0027043.jpg",
+                "images/Lesions/mel/ISIC_0027063.jpg", "images/Lesions/mel/ISIC_0029000.jpg", "images/Lesions/mel/ISIC_0029028.jpg"
+            ],
+
+            "melanocytic nevi": [
+                "images/Lesions/nv/ISIC_0024364.jpg", "images/Lesions/nv/ISIC_0024415.jpg", "images/Lesions/nv/ISIC_0024968.jpg",
+                "images/Lesions/nv/ISIC_0025218.jpg", "images/Lesions/nv/ISIC_0027315.jpg", "images/Lesions/nv/ISIC_0027347.jpg",
+                "images/Lesions/nv/ISIC_0027479.jpg", "images/Lesions/nv/ISIC_0027725.jpg", "images/Lesions/nv/ISIC_0028090.jpg"
+            ],
+
+            "vascular lesions": [
+                "images/Lesions/vasc/ISIC_0025807.jpg", "images/Lesions/vasc/ISIC_0025873.jpg", "images/Lesions/vasc/ISIC_0026092.jpg",
+                "images/Lesions/vasc/ISIC_0026336.jpg", "images/Lesions/vasc/ISIC_0026456.jpg", "images/Lesions/vasc/ISIC_0026693.jpg",
+                "images/Lesions/vasc/ISIC_0027210.jpg", "images/Lesions/vasc/ISIC_0027256.jpg", "images/Lesions/vasc/ISIC_0027385.jpg"
+            ]
+        };
+
+
+        // Function to update images based on the prediction
+        function updateReferenceImages(prediction) {
+            // Get the correct image set from the mapping
+            const selectedImages = imageSources[prediction];
+
+            // Update image elements
+            if (selectedImages) {
+                for (let i = 0; i < 9; i++) {
+                    document.getElementById(`img${i + 1}`).src = selectedImages[i];
+                }
+            } else {
+                console.error("No images found for this prediction:", prediction);
+            }
+        }
+
+        // Example usage (replace diagnosisModel["Prediction"] with actual prediction)
+        updateReferenceImages(diagnosisModel["Prediction"]);
+
     }
 
     switchMode()
