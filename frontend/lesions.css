@@ -167,7 +167,7 @@ button {
 
 button[type="button"] {
     background-color: var(--primary-color);
-    color: black;
+    color: white;
 }
 
 button[type="submit"] {
