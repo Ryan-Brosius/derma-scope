@@ -13,7 +13,7 @@ class MedicalReportGenerator:
             api_key=API_KEY,
         )
 
-    def generate_report(self, age, gender, history, symptoms, lesion_type, lesion_location, max_tokens=800):    
+    def generate_report(self, age, gender, history, symptoms, lesion_type, lesion_location, max_tokens=1000):    
         reports = []
 
         context = (
